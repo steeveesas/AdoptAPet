@@ -1,0 +1,10 @@
+﻿@tailwind base;
+
+@tailwind components;
+
+@font-face {
+  font-family: 'Soleil';
+  src: local('Soleil'), url(./fonts/SoleilFont/Fonts/TypeTogether - Soleil.otf) format('otf');
+}
+
+@tailwind utilities;
