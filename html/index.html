@@ -18,64 +18,67 @@
         <script src="../js/classes/PetSearch.js"></script>
     </head>
     <body>    
-
-        <br><br>
-            remove hard coded special needs and act quickly
-        <br><br>
-
+        <div class="flex justify-center m-8">
+            <div class="border border-4 border-blue-default text-h2 text-center text-blue-default rounded-lg w-max px-8 mt-30">Adopt-A-Pet Filter Challenge</div>
+        </div>
         <!-- Pet Search Container -->
-        <div class="border p-1" x-show="petData.all_pet_calls_returned" x-data="createPetDataObject()" x-init="init()">
-            <!-- Pet Grid Outer Container -->
-            <div class="container desktop:container mx-auto shadow-icon-shadow grid grid-cols-4 tablet:grid-cols-12 gap-2 m-5">  
-                <!-- Pet Search Filter ... We'll have this take up the first row of the col grid -->
-                <div class="mobile:col-span-4 col-span-12">
-                    <select @change="filterValue = $event.target.value" name="petFilter" id="petFilter"
-                            class="border border-gray-default rounded w-368 text-h4">
-                        <option value="none" selected disabled hidden>Filter</option>
-                        <option value="act_quickly">Act Quickly</option>
-                        <option value="special_needs">Special Needs</option>
-                        <option value="adopted_status">Adopted</option>
-                    </select>
-                </div>
-                <template x-for="pet in petData.petArray">
-                    <!-- Pet Card Container -->
-                    <div x-show="ifPassesFilterTest(pet, filterValue)" class="border border-coral-default hover:bg-gray-5 relative mobile:w-320 mobile:flex mobile:w-max shadow-icon-shadow col-span-4">
-                        <!-- Icons -->
-                        <div class="absolute top-10 right-10 desktop:top-20 desktop:right-20 z-50">
-                            <!-- Heart Icon -->
-                            <div class="group relative  w-25 h-25">
-                                <img class="absolute top-0 right-0 w-25 h-25 opacity-0 group-hover:opacity-100" src="../images/HeartIcon-HoverAndActive.svg"></img>
-                                <img class="absolute opacity-100 group-hover:opacity-0" src="../images/HeartIcon-Inactive.svg"></img>
-                            </div>
-                            <!-- Info Icon -->
-                            <div class="group relative w-25 h-25">
-                                <img class="absolute opacity-0 group-hover:opacity-100" src="../images/InfoIcon-HoverAndActive.svg"></img>
-                                <img class="absolute opacity-100 group-hover:opacity-0" src="../images/InfoIcon-Inactive.svg"></img>
-                            </div>
-                        </div>
-                        <!-- Pet Image Container -->
-                        <div class="relative p-4 text-center border border-green-default">
-                            <img :src="`${pet.pic}`" class="w-full object-cover object-top"></img>
-                            <!-- Adopted and Act Quickly statuses-->
-                            <div class="w-full text-center absolute bottom-0 left-0">
-                                <div x-show="pet.act_quickly" class="bg-lemon-default tablet:text-h6 desktop:text-h5 ">Act Quickly</div>
-                                <div x-show="pet.adopted_status" class="bg-blue-default text-white-default tablet:text-h6 desktop:text-h5">Adopted</div>
-                            </div>
-                        </div>
-                        <!-- Pet Info Container -->
-                        <div class="p-4 border border-blue-default">
-                            <div class="font-extra-bold text-h2 text-blue-default" x-text="pet.name">...</div>
-                            <div class="font-bold text-h4" x-text="pet.combined_breed">...</div>
-                            <div class="font-light text-h4">
-                                <div >
-                                    <div x-text="pet.sex_age_combo" class="inline"></div>                    
-                                    <div x-text="pet.special_needs ? 'Special Needs' : ''" class="inline text-coral-default"></div>
-                                </div>
-                                <div x-text="pet.city_state_combo">...</div>
-                            </div>
-                        </div>                                 
+        <div class="m-20 p-20" x-data="createPetDataObject()" x-init="init()">            
+            <div class="flex justify-center m-8" x-show="!petData.all_pet_calls_returned">
+                <div class="text-h4">Sit! Stay! We're Fetching Our Four-legged Friends...</div>
+            </div>
+            <div x-show="petData.all_pet_calls_returned">
+                <!-- Pet Grid Outer Container -->
+                <div class="container desktop:container mx-auto shadow-icon-shadow grid grid-cols-4 tablet:grid-cols-12 gap-2 m-5 pb-20">  
+                    <!-- Pet Search Filter ... We'll have this take up the first row of the col grid -->
+                    <div class="mt-20 mobile:col-span-4 col-span-12">
+                        <select @change="filterValue = $event.target.value" name="petFilter" id="petFilter"
+                                class="border border-gray-default rounded w-368 text-h4">
+                            <option value="none" selected disabled hidden>Filter</option>
+                            <option value="act_quickly">Act Quickly</option>
+                            <option value="special_needs">Special Needs</option>
+                            <option value="adopted_status">Adopted</option>
+                        </select>
                     </div>
-                </template>
+                    <template x-for="pet in petData.petArray">
+                        <!-- Pet Card Container -->
+                        <div x-show="ifPassesFilterTest(pet, filterValue)" class="hover:bg-gray-5 relative mobile:w-320 mobile:flex mobile:w-max shadow-icon-shadow col-span-4">
+                            <!-- Icons -->
+                            <div class="absolute top-10 right-10 desktop:top-20 desktop:right-20 z-50">
+                                <!-- Heart Icon -->
+                                <div class="group relative  w-25 h-25">
+                                    <img class="absolute top-0 right-0 w-25 h-25 opacity-0 group-hover:opacity-100" src="../images/HeartIcon-HoverAndActive.svg"></img>
+                                    <img class="absolute opacity-100 group-hover:opacity-0" src="../images/HeartIcon-Inactive.svg"></img>
+                                </div>
+                                <!-- Info Icon -->
+                                <div class="group relative w-25 h-25">
+                                    <img class="absolute opacity-0 group-hover:opacity-100" src="../images/InfoIcon-HoverAndActive.svg"></img>
+                                    <img class="absolute opacity-100 group-hover:opacity-0" src="../images/InfoIcon-Inactive.svg"></img>
+                                </div>
+                            </div>
+                            <!-- Pet Image Container -->
+                            <div class="relative p-4 text-center">
+                                <img :src="`${pet.pic}`" class="w-full object-cover object-top"></img>
+                                <!-- Adopted and Act Quickly statuses-->
+                                <div class="w-full text-center absolute bottom-0 left-0">
+                                    <div x-show="pet.act_quickly" class="bg-lemon-default tablet:text-h6 desktop:text-h5 ">Act Quickly</div>
+                                    <div x-show="pet.adopted_status" class="bg-blue-default text-white-default tablet:text-h6 desktop:text-h5">Adopted</div>
+                                </div>
+                            </div>
+                            <!-- Pet Info Container -->
+                            <div class="p-4">
+                                <div class="font-extra-bold text-h2 text-blue-default" x-text="pet.name">...</div>
+                                <div class="font-bold text-h4" x-text="pet.combined_breed">...</div>
+                                <div class="font-light text-h4">
+                                    <div >
+                                        <div x-text="pet.sex_age_combo" class="inline"></div>                    
+                                        <div x-text="pet.special_needs ? 'Special Needs' : ''" class="inline text-coral-default"></div>
+                                    </div>
+                                    <div x-text="pet.city_state_combo">...</div>
+                                </div>
+                            </div>                                 
+                        </div>
+                    </template>
+                </div>
             </div>
         </div>
 

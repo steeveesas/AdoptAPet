@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: 'Soleil';
-  src: local('Soleil'), url(./fonts/SoleilFont/Fonts/TypeTogether - Soleil.otf) format('otf');
+  src: local('Soleil'), url(../fonts/SoleilFont/Fonts/TypeTogether - Soleil.otf) format('otf');
 }
 
 @tailwind utilities;

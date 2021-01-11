@@ -569,7 +569,7 @@ video {
 @font-face {
   font-family: 'Soleil';
 
-  src: local('Soleil'), url(./fonts/SoleilFont/Fonts/TypeTogether - Soleil.otf) format('otf');
+  src: local('Soleil'), url(../fonts/SoleilFont/Fonts/TypeTogether - Soleil.otf) format('otf');
 }
 
 .space-y-0 > :not([hidden]) ~ :not([hidden]) {

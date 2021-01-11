@@ -28,8 +28,8 @@ class PetCard {
 
 	//This is the petDetails provided by the petDetails API call
 	setPetDetails(petDetails){	
-        this.special_needs = randomize(this.pet_id);//petDetails.special_needs;
-        this.act_quickly = randomize(this.pet_id-1);//petDetails.act_quickly;
+        this.special_needs = petDetails.special_needs;
+        this.act_quickly = petDetails.act_quickly;
 
 		//Additional useful fields to make viewing data easier
 		this.setPetSexAgeCombo();
